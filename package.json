@@ -1,0 +1,24 @@
+{
+  "name": "toy-robot",
+  "version": "1.0.0",
+  "description": "toy-robot",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha && exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hafrizresa/toy-robot.git"
+  },
+  "author": "hafrizresa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hafrizresa/toy-robot/issues"
+  },
+  "homepage": "https://github.com/hafrizresa/toy-robot#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0"
+  }
+}
