@@ -1,5 +1,4 @@
 const fs = require('fs')
-// let data = JSON.parse(fs.readFileSync('data.json', 'utf8'))
 
 class Simulator {
 
@@ -13,7 +12,27 @@ class Simulator {
   }
 
   Move() {
-  
+    let current = fs.readFileSync('data.json', 'utf8')
+    if (current) {
+      let parsed = JSON.parse(current)
+      if (parsed.F) {
+        if (parsed.F === 'NORTH' && parsed.Y < 5) {
+          let plusY = parsed.Y + 1
+          this.writeData('', plusY)
+        } else if (parsed.F === 'EAST' && parsed.X < 5) {
+          let plusX = parsed.X + 1
+          this.writeData(plusX, '')
+        } else if (parsed.F === 'SOUTH' && parsed.Y >= 1) {
+          let minusY = parsed.Y - 1
+          this.writeData('', minusY)
+        } else if (parsed.F === 'WEST' && parsed.X >= 1) {
+          let minusX = parsed.X - 1
+          this.writeData(minusX, '')
+        }
+      }
+    } else {
+      console.log('PLEASE INPUT PLACE')
+    }
   }
 
   Right() {
@@ -84,10 +103,25 @@ class Simulator {
 
   writeData(x, y, f) {
     let current = JSON.parse(fs.readFileSync('data.json', 'utf8'))
-    let X = x || current.X
-    let Y = y || current.Y
-    let F = f || current.F
+    let X
+    let Y
+    let F
+    if (y === 0) {
+      X = x || current.X
+      Y = 0
+      F = f || current.F
 
+    } else if (x === 0) {
+      X = 0
+      Y = y || current.Y
+      F = f || current.F
+
+    } else {
+      X = x || current.X
+      Y = y || current.Y
+      F = f || current.F
+
+    }
     fs.writeFileSync('data.json', `{"X":${X},"Y":${Y}, "F":"${F}"}`, 'utf8')
 
   }

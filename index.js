@@ -19,6 +19,13 @@ switch (input[0]) {
     Simulator.Report()
     break;
   default:
-    console.log('PLEASE INPUT CORRECT COMAND')
+    console.log(`
+    PLEASE INPUT CORRECT COMAND \n 
+    PLACE X,Y,F \n
+    MOVE \n
+    RIGTH \n
+    LEFT \n
+    REPORT
+    `)
     break;
 }
