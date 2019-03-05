@@ -29,6 +29,8 @@ class Simulator {
           let minusX = parsed.X - 1
           this.writeData(minusX, '')
         }
+      } else {
+        console.log('PLEASE INPUT PLACE')
       }
     } else {
       console.log('PLEASE INPUT PLACE')
@@ -88,6 +90,8 @@ class Simulator {
       let parsed = JSON.parse(report)
       if (parsed.F) {
         console.log(parsed.X + ',' + parsed.Y + ',' + parsed.F)
+      } else {
+        console.log('YOU DONT PLACE ROBOT ANYWHERE')
       }
     } else {
       console.log('YOU DONT PLACE ROBOT ANYWHERE')
@@ -124,6 +128,10 @@ class Simulator {
     }
     fs.writeFileSync('data.json', `{"X":${X},"Y":${Y}, "F":"${F}"}`, 'utf8')
 
+  }
+
+  Restart() {
+    fs.writeFileSync('data.json', `{"X":0,"Y":0, "F":""}`, 'utf8')
   }
 
 }

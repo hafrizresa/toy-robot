@@ -18,6 +18,9 @@ switch (input[0]) {
   case "REPORT":
     Simulator.Report()
     break;
+  case "RESTART":
+    Simulator.Restart()
+    break;
   default:
     console.log(`
     PLEASE INPUT CORRECT COMAND \n 
@@ -25,7 +28,8 @@ switch (input[0]) {
     MOVE \n
     RIGTH \n
     LEFT \n
-    REPORT
+    REPORT \n
+    RESTART
     `)
     break;
 }
