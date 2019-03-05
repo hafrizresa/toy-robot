@@ -7,92 +7,77 @@ class Simulator {
     if (this.placeChecker(place)) {
       fs.writeFileSync('data.json', `{"X":${place[0]},"Y":${place[1]}, "F":"${place[2]}"}`, 'utf8')
     } else {
-      console.log('PLEASE INPUT CORRECT COMAND')
+      console.log('PLEASE INPUT CORRECT COMMAND')
     }
   }
 
   Move() {
     let current = fs.readFileSync('data.json', 'utf8')
-    if (current) {
-      let parsed = JSON.parse(current)
-      if (parsed.F) {
-        if (parsed.F === 'NORTH' && parsed.Y < 5) {
-          let plusY = parsed.Y + 1
-          this.writeData('', plusY)
-        } else if (parsed.F === 'EAST' && parsed.X < 5) {
-          let plusX = parsed.X + 1
-          this.writeData(plusX, '')
-        } else if (parsed.F === 'SOUTH' && parsed.Y >= 1) {
-          let minusY = parsed.Y - 1
-          this.writeData('', minusY)
-        } else if (parsed.F === 'WEST' && parsed.X >= 1) {
-          let minusX = parsed.X - 1
-          this.writeData(minusX, '')
-        }
-      } else {
-        console.log('PLEASE INPUT PLACE')
+    let parsed = JSON.parse(current)
+    if (parsed.F) {
+      if (parsed.F === 'NORTH' && parsed.Y < 5) {
+        let plusY = parsed.Y + 1
+        this.writeData('', plusY)
+      } else if (parsed.F === 'EAST' && parsed.X < 5) {
+        let plusX = parsed.X + 1
+        this.writeData(plusX, '')
+      } else if (parsed.F === 'SOUTH' && parsed.Y >= 1) {
+        let minusY = parsed.Y - 1
+        this.writeData('', minusY)
+      } else if (parsed.F === 'WEST' && parsed.X >= 1) {
+        let minusX = parsed.X - 1
+        this.writeData(minusX, '')
       }
     } else {
       console.log('PLEASE INPUT PLACE')
     }
+
   }
 
   Right() {
     let data = fs.readFileSync('data.json', 'utf8')
-    if (data) {
-      let parsed = JSON.parse(data)
-      if (parsed.F) {
-        if (parsed.F === 'NORTH') {
-          this.writeData('', '', 'EAST')
-        } else if (parsed.F === 'EAST') {
-          this.writeData('', '', 'SOUTH')
-        } else if (parsed.F === 'SOUTH') {
-          this.writeData('', '', 'WEST')
-        }
-        else {
-          this.writeData('', '', 'NORTH')
-        }
-
-      } else {
-        console.log("INPUT PLACE FIRST")
+    let parsed = JSON.parse(data)
+    if (parsed.F) {
+      if (parsed.F === 'NORTH') {
+        this.writeData('', '', 'EAST')
+      } else if (parsed.F === 'EAST') {
+        this.writeData('', '', 'SOUTH')
+      } else if (parsed.F === 'SOUTH') {
+        this.writeData('', '', 'WEST')
       }
+      else {
+        this.writeData('', '', 'NORTH')
+      }
+
     } else {
-      console.log('INPUT PLACE FIRST')
+      console.log("INPUT PLACE FIRST")
     }
   }
 
   Left() {
     let data = fs.readFileSync('data.json', 'utf8')
-    if (data) {
-      let parsed = JSON.parse(data)
-      if (parsed.F) {
-        if (parsed.F === 'NORTH') {
-          this.writeData('', '', 'WEST')
-        } else if (parsed.F === 'WEST') {
-          this.writeData('', '', 'SOUTH')
-        } else if (parsed.F === 'SOUTH') {
-          this.writeData('', '', 'EAST')
-        }
-        else {
-          this.writeData('', '', 'NORTH')
-        }
-      } else {
-        console.log("INPUT PLACE FIRST")
+    let parsed = JSON.parse(data)
+    if (parsed.F) {
+      if (parsed.F === 'NORTH') {
+        this.writeData('', '', 'WEST')
+      } else if (parsed.F === 'WEST') {
+        this.writeData('', '', 'SOUTH')
+      } else if (parsed.F === 'SOUTH') {
+        this.writeData('', '', 'EAST')
+      }
+      else {
+        this.writeData('', '', 'NORTH')
       }
     } else {
-      console.log('INPUT PLACE FIRST')
+      console.log("INPUT PLACE FIRST")
     }
   }
 
   Report() {
     let report = fs.readFileSync('data.json', 'utf8')
-    if (report) {
-      let parsed = JSON.parse(report)
-      if (parsed.F) {
-        console.log(parsed.X + ',' + parsed.Y + ',' + parsed.F)
-      } else {
-        console.log('YOU DONT PLACE ROBOT ANYWHERE')
-      }
+    let parsed = JSON.parse(report)
+    if (parsed.F) {
+      console.log(parsed.X + ',' + parsed.Y + ',' + parsed.F)
     } else {
       console.log('YOU DONT PLACE ROBOT ANYWHERE')
     }
